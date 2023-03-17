@@ -49,17 +49,16 @@ public class insertAverages {
         input2 = Double.parseDouble(br1.readLine());
         br1.close();
 
-        BufferedReader br2 = new BufferedReader(new FileReader("kiirusVäljastus.txt"));
+        /*BufferedReader br2 = new BufferedReader(new FileReader("kiirusVäljastus.txt"));
         double averageTotal = Double.parseDouble(br2.readLine());
         double i = Integer.parseInt(br2.readLine());
         br2.close();
 
         averageTotal += input1 + input2;
-        i += 2;
-        double totalAverage = averageTotal / i;
+        i += 2;*/
+        double totalAverage = listTotalAverage();
         PrintWriter pw = new PrintWriter(new FileWriter("kiirusVäljastus.txt"));
-        pw.println((averageTotal)/i);
-        pw.println(i);
+        pw.println(totalAverage);
         pw.close();
         return totalAverage;
 
