@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,6 +16,20 @@ public class ToiduaineController {
     ToidukomponentRepository toidukomponentRepository;
 
     // localhost:8080/leia-rasva-alusel?alg=1&l6pp=5
+    @GetMapping("leia-rasva-alusel2")
+    public List<Toiduaine> leiaRasvaAlusel2(
+            @RequestParam int alg,
+            @RequestParam int l6pp
+    ) {
+        List<Toiduaine> toiduained = toiduaineRepository.findAll();
+        List<Toiduaine> tagastatavadToiduained = new ArrayList<>();
+        for (int i = 0; i < toiduained.size(); i++) {
+            if (toiduained.get(i).getRasv() > alg && toiduained.get(i).getRasv() < l6pp) {
+                tagastatavadToiduained.add(toiduained.get(i));
+            }
+        }
+        return tagastatavadToiduained;
+    }
     @GetMapping("leia-rasva-alusel")
     public List<Toiduaine> leiaRasvaAlusel(
             @RequestParam int alg,
@@ -56,7 +71,7 @@ public class ToiduaineController {
             @RequestParam Long id
     ){
         ToiduKomponent toidukomponent = toidukomponentRepository.findById(id).get();
-        int rasv = toidukomponent.getToiduaine.getRasv() * toidukomponent.getKogus() / 100;
+        int rasv = toidukomponent.getToiduaine().getRasv() * toidukomponent.getKogus() / 100;
         return rasv;
     }
     // localhost:8080/lisa-toiduained?id=1&nimetus=kartul&valk=5&rasv=2&sysivesik=93
@@ -83,8 +98,8 @@ public class ToiduaineController {
             @RequestParam int kogus
 
     ){
-        Toiduaine toiduaine = toiduaineRepository.findById(toiduaineId);
-        toidukomponentRepository.save(new ToiduKomponent(id, toiduaine, kogus))
+        Toiduaine toiduaine = toiduaineRepository.findById(toiduaineId).get();
+        toidukomponentRepository.save(new ToiduKomponent(id, toiduaine, kogus));
         return toidukomponentRepository.findAll();
     }
 }

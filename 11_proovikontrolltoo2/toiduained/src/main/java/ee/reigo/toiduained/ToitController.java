@@ -32,7 +32,7 @@ public class ToitController {
             @RequestParam String nimetus
     ){
         Toit toit = toitRepository.findById(nimetus).get();
-        List<ToiduKomponent> toiduKomponendid = toit.getToidukomponendid();
+        List<ToiduKomponent> toidukomponendid = toit.getToidukomponendid();
         int kogus = 0;
         for(ToiduKomponent t: toidukomponendid){
             kogus += t.getKogus();

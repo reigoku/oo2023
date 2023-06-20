@@ -16,7 +16,7 @@ public class TellimusController {
     ToodeRepository toodeRepository;
     @Autowired
     TellimusRepository tellimusRepository;
-    /*List<Toode> tellimuseTooted = new ArrayList<>(Arrays.asList(
+    List<Toode> tellimuseTooted = new ArrayList<>(Arrays.asList(
             new Toode(1,"Koola", 1.5),
             new Toode(2,"Fanta", 1.0),
             new Toode(3,"Sprite", 1.7),
@@ -29,7 +29,7 @@ public class TellimusController {
             new Toode(3,"Spirte", 1.7),
             new Toode(4,"monsher", 2.0),
             new Toode(5,"Vitamin well", 2.5)
-    ));*/
+    ));
     /*Isik tellija = new Isik(1, "a", "a", new Date());
     List<Tellimus> tellimused = new ArrayList<>(Arrays.asList(
             new Tellimus(1, tellija, tellimuseTooted),
@@ -47,13 +47,13 @@ public class TellimusController {
         return "Tellimus kustutatud!";
     }
     // POST localhost:8080/lisa-tellimus
-    @Autowired
-    IsikController isikController;
+    //@Autowired
+    //IsikController isikController;
 
     @Autowired
     ToodeController toodeController;
     // POST localhost:8080/lisa-tellimus?id=9&tellijaIndex=3&tooteIndex=2
-    @PostMapping("lisa-tellimus")
+    @GetMapping("lisa-tellimus")
     public List<Tellimus> lisaToode(
             @RequestParam int id,
             @RequestParam int tellijaId,
